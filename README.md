@@ -1,2 +1,2 @@
 # Problem-Solving
-Competitive programming question solutions of various sites
+Competitive programming questions solutions of various sites
