@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+	int n,a[1000],sum=0,count=0;
+	cin >> n;
+	bool s=false;
+	for(int i=0;i<n;i++)
+	{
+		cin >> a[i];
+		sum=sum+a[i];
+		if(a[i]==0)
+			s=true;
+	}
+	sort(a,a+n,greater<int>());
+	
+	// if number does not contain 0 it is not divisible by 90
+	if(s==false)
+		cout << -1;
+	// sum of number should be divisible by 9 
+	else 
+	{
+		
+		while(sum%9!=0 && sum >0)
+		{
+			sum-=5;
+			count++;
+		}
+		if(sum==0)
+		{
+			cout << 0;
+		}
+		else
+		{
+		for(int i=count;i<n;i++)
+		{
+			cout << a[i];
+		}
+	}
+	}
+}
