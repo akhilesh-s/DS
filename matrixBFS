@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int m=grid.size();
+        if(m==0) return 0;
+        int n=grid[0].size(),ans=0;
+        for(int i=0 ; i<m ; i++)
+            for(int j=0 ; j<n ; j++)
+                if(grid[i][j]=='1')
+                {
+                    ans++;
+                    queue<pair<int,int>>q;
+                    q.push({i,j});
+                    grid[i][j]='0';
+                    while(!q.empty())
+                    {
+                        auto x=q.front();
+                        int a=x.first,b=x.second;
+                        q.pop();
+                        if(a>0 and grid[a-1][b]=='1') {q.push({a-1,b});grid[a-1][b]='0';}
+                        if(b>0 and grid[a][b-1]=='1') {q.push({a,b-1});grid[a][b-1]='0';}
+                        if(a<m-1 and grid[a+1][b]=='1') {q.push({a+1,b});grid[a+1][b]='0';}
+                        if(b<n-1 and grid[a][b+1]=='1') {q.push({a,b+1});grid[a][b+1]='0';}
+                    }
+                }
+        return ans;
+    }
+};
