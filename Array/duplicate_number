@@ -1,0 +1,40 @@
+#find duplicate number in an vector
+
+#using sort
+
+    int findDuplicate(vector<int>& v) {
+        sort(v.begin(), v.end());
+    
+        int duplicate=-1;
+        for(int i=1;i<v.size();i++)
+        {
+            if(v[i]==v[i-1])
+            {
+                duplicate=v[i];
+                break;
+            }
+        }
+        return duplicate;
+    
+    
+    
+   #using slow and fast pointer
+   
+   
+    int findDuplicate(vector<int>& v) {
+        int slow=v[0];
+        int fast=v[0];
+        do{
+            slow=v[slow];
+            fast=v[v[fast]];
+        }while(slow!=fast);
+        
+        slow=v[0];
+        while(fast!=slow)
+        {
+            slow = v[slow];
+            fast=v[fast];
+        }
+         return fast;
+        }
+   
