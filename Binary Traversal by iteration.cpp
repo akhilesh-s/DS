@@ -3,28 +3,22 @@
 
 class Solution {
 public:
-    vector<int> postorderTraversal(TreeNode* root) {
-        vector<int> res;
-        stack<pair<TreeNode*, int>> s;
-        s.push({root,0});
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector <int> preorder;
+        
+        stack<TreeNode*> s;
+        s.push(root);
         while(!s.empty())
         {
-            TreeNode* cur=s.top().first;   
-            int state=s.top().second;
+            TreeNode* temp = s.top();
             s.pop();
-            if(state==3 || cur==NULL)
-                continue;
-            s.push({cur,state+1});
-            if(state==0)
-                s.push({cur->left,0});
-            else if(state==1)
-                s.push({cur->right,0});
-            else 
-                res.push_back(cur->val);
-            
+            if(temp!=NULL){
+            preorder.push_back(temp->val);
+            s.push(temp->right);
+            s.push(temp->left);
+            }
         }
-        return res;
-        
+        return preorder;
     }
 };
 
