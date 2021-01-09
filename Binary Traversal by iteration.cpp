@@ -26,27 +26,25 @@ public:
 
 class Solution {
 public:
-    vector<int> postorderTraversal(TreeNode* root) {
-        vector<int> res;
-        stack<pair<TreeNode*, int>> s;
-        s.push({root,0});
-        while(!s.empty())
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> inorder;
+        stack<TreeNode*> s;
+        
+        TreeNode* curr = root;
+        
+        while(curr!=NULL || !s.empty())
         {
-            TreeNode* cur=s.top().first;   
-            int state=s.top().second;
+            while(curr!=NULL)
+            {
+                s.push(curr);
+                curr=curr->left;
+            }
+            curr= s.top();
+            inorder.push_back(curr->val);
             s.pop();
-            if(state==3 || cur==NULL)
-                continue;
-            s.push({cur,state+1});
-            if(state==0)
-                s.push({cur->left,0});
-            else if(state==1)
-                res.push_back(cur->val);
-            else 
-                s.push({cur->right,0});
-            
+            curr=curr->right;
         }
-        return res;
+        return inorder;
         
     }
 };
